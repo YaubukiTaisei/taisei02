@@ -18,10 +18,13 @@ return new class extends Migration
             $table->string('company_name');
             $table->string('occupation');
             $table->string('question');
-            $table->string('answer');
+            $table->text('answer');
             $table->foreignId("user_id")->constrained();
             $table->timestamps();
             $table->softDeletes();
+            $table->foreignId('evaluation_id')->constrained(); 
+            $table->foreignId('selection_type_id')->constrained();
+            $table->foreignId('result_id')->constrained();
         });
     }
 
@@ -34,4 +37,7 @@ return new class extends Migration
     {
         Schema::dropIfExists('posts');
     }
+    
+       
+    
 };
