@@ -9,7 +9,7 @@ class Post extends Model
 {
     use HasFactory;
     
-        public function evaluation()
+    public function evaluation()
     {
         return $this->belongsTo(Evaluation::class);
     }
@@ -22,5 +22,10 @@ class Post extends Model
     public function selection_type()
     {
         return $this->belongsTo(Selection_type::class);
+    }
+    
+    public function getByLimit(int $limit_count = 10)
+    {
+        return $this->orderby('updated_at', 'DESC')->limit($limit_count)->get();
     }
 }
