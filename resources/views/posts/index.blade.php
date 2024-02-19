@@ -10,6 +10,8 @@
     </head>
     <body class="antialiased">
         <h1>体験記を投稿</h1>
+            <label for="company_name">企業名</label>
+            <input type="text" id="company_name" name="name" required minlength="1" maxlength="20" placeholder="企業名を入力してください"/
         <div class='posts'>
             @foreach($posts as $post)
                 <div class='post'>
