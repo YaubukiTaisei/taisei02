@@ -9,57 +9,57 @@
         
     </head>
     <body class="antialiased">
-        <h1>体験記を投稿</h1>
+        <h1>体験記を投稿する</h1>
         <form action="/posts" method="POST"> 
           @csrf
           <div> 
               <label for="company_name">企業名</label>
-              <input type="text" id="company_name" name="name" required minlength="1" maxlength="20" placeholder="企業名を入力してください" />
+              <input type="text" id="company_name" name="post[company_name]" required minlength="1" maxlength="20" placeholder="企業名を入力してください" />
           </div>
           <diV>
               <label for="evaluation_id">企業の評価</label>
-              <select id="evaluation_id">
+              <select id="evaluation_id" name="post[evaluation_id]">
                   <option value="">企業に対する評価を1～5で選んでください</option>
-                  <option value="stars">1</option>
-                  <option value="stars">2</option>
-                  <option value="stars">3</option>
-                  <option value="stars">4</option>
-                  <option value="stars">5</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
               </select>
           </div>
           <div>
               <label for="occupation">職種</label>
-              <input type="text" id="occupation" name="name" required minlength="1" maxlength="20" placeholder="例）総合職"/>
+              <input type="text" id="occupation" name="post[occupation]" required minlength="1" maxlength="20" placeholder="例）総合職"/>
           </div>
           <div>
               <label for="selecyion_type_id">選考タイプ</label>
-              <select id="selection_type_id">
+              <select id="selection_type_id" name="post[selection_type_id]">
                   <option value="">選考の種類を以下から選んでください</option>
-                  <option value="type">一次選考</option>
-                  <option value="type">二次選考</option>
-                  <option value="type">三次選考</option>
-                  <option value="type">最終選考</option>
+                  <option value="1">一次選考</option>
+                  <option value="2">二次選考</option>
+                  <option value="3">三次選考</option>
+                  <option value="4">最終選考</option>
               </select> 
           </div>
           <div>
               <label for="result_id">選考結果</label>
-              <select id="result_id">
+              <select id="result_id" name="post[result_id]">
                   <option value="">あなたの最終選考結果を以下から選んでください</option>
-                  <option value="process">一次選考通過</option>
-                  <option value="process">二次選考通過</option>
-                  <option value="process">三次選考通過</option>
-                  <option value="process">最終選考</option>
-                  <option value="process">内定</option>
-                　<option value="process">内定辞退</option>
+                  <option value="1">一次選考通過</option>
+                  <option value="2">二次選考通過</option>
+                  <option value="3">三次選考通過</option>
+                  <option value="4">最終選考</option>
+                  <option value="5">内定</option>
+                　<option value="6">内定辞退</option>
               </select> 
           </div>
           <div>
               <label for="question">質問</label>
-              <input type="body" id="question" name="name" required size="90" /> 
+              <input type="body" id="question" name="post[question]" required size="90" /> 
           </div>
           <div>
               <label for="question">回答</label>
-              <input type="body" id="answer" name="name" required size="90"/>   
+              <input type="body" id="answer" name="post[answer]" required size="90"/>   
           </div>
           <div>
               <input type="submit" name="送信"/>
