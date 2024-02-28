@@ -9,6 +9,17 @@ class Post extends Model
 {
     use HasFactory;
     
+    protected $fillable = [
+        'user_id',
+        'company_name',
+        'evaluation_id',
+        'occupation',
+        'selection_type_id',
+        'result_id',
+        'question',
+        'answer',
+        ];
+        
     public function evaluation()
     {
         return $this->belongsTo(Evaluation::class);
@@ -26,6 +37,6 @@ class Post extends Model
     
     public function getByLimit(int $limit_count = 10)
     {
-        return $this->orderby('updated_at', 'DESC')->limit($limit_count)->get();
+        return $this->orderby('updated_at', 'DESC')->paginate($limit_count);
     }
 }

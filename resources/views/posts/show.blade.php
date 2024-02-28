@@ -9,15 +9,29 @@
         
     </head>
     <body class="antialiased">
-       <h1>就活easy</h1>
-       <a href="/posts/create">・体験記を投稿する</a>
-       <div class='posts'>
-       　　 @foreach($posts as $post)
-                <div class='post'>
-                    <h2 class='question'>{{ $post->question }}</h2>
-                    <p class='answer'>{{ $post->answer }}</p>
-                </div>
-           @endforeach
+        <h1 class='企業名'>
+            {{ $post->company_name }}
+        </h1>
+        <div class='content'>
+            <div class='content_post'>
+               <h3>企業名</h3>
+                   <h2 class='company_name'>{{ $post->company_name }}</h2>
+               <h3>選考タイプ</h3>
+                   <h3 class='selection_type_id'>{{ $post->selection_type_id }}</h3>
+            　 <p>職種</p>
+                   <p class='occupation'>{{ $post->occupation }}</p>
+               <p>企業の評価</p>  
+                   <p class='evaluation_id'>{{ $post->evaluation_id }}</p>
+               <p>選考結果</p>  
+                   <p class='result_id'>{{ $post->result_id }}</p>
+               <P>質問</P>   
+                   <p class='question'>{{ $post->question }}</p>
+               <P>回答</P>
+                   <p class='answer'>{{ $post->answer }}</p>
+            </div>
+        </div>
+        <div class='footer'>
+            <a href="/">戻る</a>
         </div>
     </body>
 </html>

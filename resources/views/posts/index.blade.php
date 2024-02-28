@@ -9,15 +9,23 @@
         
     </head>
     <body class="antialiased">
-       <h1>就活easy</h1>
-       <a href="/posts/create">・体験記を投稿する</a>
-       <div class='posts'>
-       　　 @foreach($posts as $post)
-                <div class='post'>
-                    <h2 class='question'>{{ $post->question }}</h2>
-                    <p class='answer'>{{ $post->answer }}</p>
-                </div>
-           @endforeach
+        <h1>体験記を探す</h1>
+        <a href="/posts/create">・体験記を投稿する</a>
+        <div class='posts'>
+            @foreach($posts as $post)
+               <div class='post'>
+                  <a href="/posts/{{ $post->id }}"><h2 class='company_name'>{{ $post->company_name }}</h2></a>
+                   <p class='selection_type_id'>{{ $post->selection_type_id }}</p>
+                   <p class='occupation'>{{ $post->occupation }}</p>
+                   <p class='evaluation_id'>{{ $post->evaluation_id }}</p>
+                   <h3 class='result_id'>{{ $post->result_id }}</h3>
+                   <p class='question'>{{ $post->question }}</p>
+                   <p class='answer'>{{ $post->answer }}</p>
+               </div>
+            @endforeach
         </div>
+       
+          
+          
     </body>
 </html>
