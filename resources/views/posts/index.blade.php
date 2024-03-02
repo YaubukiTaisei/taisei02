@@ -10,7 +10,7 @@
     </head>
     <body class="antialiased">
         <h1>体験記を探す</h1>
-        <a href="/posts/create">・体験記を投稿する</a>
+        <a href="/posts/create">・体験記を投稿するyou</a>
         <div class='posts'>
             @foreach($posts as $post)
                <div class='post'>
