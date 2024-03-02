@@ -10,7 +10,7 @@
     </head>
     <body class="antialiased">
         <h1>体験記を探す</h1>
-        <a href="/posts/create">・体験記を投稿するyou</a>
+        <a href="/posts/create">・体験記を投稿する</a>
         <div class='posts'>
             @foreach($posts as $post)
                <div class='post'>
@@ -21,11 +21,22 @@
                    <p class='result_id'>{{ $post->result->process }}</p>
                    <p class='question'>{{ $post->question }}</p>
                    <p class='answer'>{{ $post->answer }}</p>
+                   <form action ="/posts/{{ $post->id }}" id="form_{{ $post->id }}" method="post">
+                      @csrf
+                      @method('DELETE')
+                      <button type="button" onclick="deletePost({{ $post->id }})">削除</button>
+                   </form>
                </div>
             @endforeach
         </div>
-       
-          
-          
+        <script>
+           function deletePost(id) {
+               'use strict'
+               
+               if(confirm('削除すると復元できません。\n本当に削除しますか？')) {
+                   document.getElementById(`form_${id}`).submit();
+               }
+            }
+        </script>
     </body>
 </html>

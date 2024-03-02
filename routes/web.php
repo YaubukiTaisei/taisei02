@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
-use 
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +23,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/posts', [PostController::class, 'store']);
     Route::get('/posts/edit/{post}', [PostController::class, 'edit']);
     Route::put('posts/{post}', [Postcontroller::class, 'update']);
+    Route::delete('/posts/{post}',[PostController::class, 'delete']);
 
 });
 Route::middleware('auth')->group(function () {
