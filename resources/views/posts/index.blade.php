@@ -15,10 +15,10 @@
             @foreach($posts as $post)
                <div class='post'>
                   <a href="/posts/{{ $post->id }}"><h2 class='company_name'>{{ $post->company_name }}</h2></a>
-                   <p class='selection_type_id'>{{ $post->selection_type_id }}</p>
+                   <p class='selection_type_id'>{{ $post->selection_type->type }}</p>
                    <p class='occupation'>{{ $post->occupation }}</p>
                    <p class='evaluation_id'>{{ $post->evaluation_id }}</p>
-                   <h3 class='result_id'>{{ $post->result_id }}</h3>
+                   <p class='result_id'>{{ $post->result->process }}</p>
                    <p class='question'>{{ $post->question }}</p>
                    <p class='answer'>{{ $post->answer }}</p>
                </div>

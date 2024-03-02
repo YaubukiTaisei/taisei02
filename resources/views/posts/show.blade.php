@@ -14,24 +14,24 @@
         </h1>
         <div class='content'>
             <div class='content_post'>
-               <h3>企業名</h3>
-                   <h2 class='company_name'>{{ $post->company_name }}</h2>
-               <h3>選考タイプ</h3>
-                   <h3 class='selection_type_id'>{{ $post->selection_type_id }}</h3>
             　 <p>職種</p>
                    <p class='occupation'>{{ $post->occupation }}</p>
                <p>企業の評価</p>  
                    <p class='evaluation_id'>{{ $post->evaluation_id }}</p>
-               <p>選考結果</p>  
-                   <p class='result_id'>{{ $post->result_id }}</p>
-               <P>質問</P>   
+               <p>選考タイプ</p>
+                   <p class='selection_type_id'>{{ $post->selection_type->type }}</p>
+               <p>最終選考結果</p>  
+                   <p class='result_id'>{{ $post->result->process }}</p>
+               <P>Q.</P>   
                    <p class='question'>{{ $post->question }}</p>
-               <P>回答</P>
+               <P>A.</P>
                    <p class='answer'>{{ $post->answer }}</p>
             </div>
-        </div>
+            <div class='edit'>
+               <a href="/posts/edit/{{ $post->id }}">編集</a>
+            </div>
         <div class='footer'>
-            <a href="/">戻る</a>
+            <a href="/posts/index">戻る</a>
         </div>
     </body>
 </html>
