@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\Like;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -27,6 +28,11 @@ class PostController extends Controller
     public function index(Post $post)
     {
         return view('posts/index')->with(['posts' => $post->getByLimit()]);
+        $user = auth()->user();
+        $posts = Post::withCount('likes')->orderByDesc('updated_at')->get();
+        return view('posts.index', [
+            'posts' => $posts,
+        ]);
     }
     
     public function store(Request $request, Post $post)
@@ -53,5 +59,29 @@ class PostController extends Controller
     {
         $post->delete();
         return redirect('/');
+    }
+    
+    public function like(Request $request)
+    {
+        $user_id = Auth::user()->id; 
+        $post_id = $request->post_id; 
+
+        $already_liked = Like::where('user_id', $user_id)->where('post_id', $post_id)->first(); 
+
+        if (!$already_liked) { 
+            $like = new Like; 
+            $like->post_id = $post_id;
+            $like->user_id = $user_id;
+            $like->save();
+        } else {
+       
+            Like::where('post_id', $post_id)->where('user_id', $user_id)->delete();
+    }
+    
+    $post_likes_count = Post::withCount('likes')->findOrFail($post_id)->likes_count;
+    $param = [
+        'post_likes_count' => $post_likes_count,
+    ];
+    return response()->json($param); 
     }
 }
