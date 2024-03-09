@@ -6,7 +6,6 @@
 
         <!-- Fonts -->
         <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
         
     </head>
     <body class="antialiased">
@@ -28,19 +27,6 @@
                       <button type="button" onclick="deletePost({{ $post->id }})">削除</button>
                    </form>
                </div>
-               @auth
-               @if (!$post->isLikedBy(Auth::user()))
-                   <span class="likes">
-                       <i class="fas fa-heart like-toggle" data-post-id="{{ $post->id }}"></i>
-                   <span class="like-counter">{{$post->likes_count}}</span>
-                   </span>
-               @else
-                   <span class="likes">
-                       <i class="fas fa-heart heart like-toggle liked" data-post-id="{{ $post->id }}"></i>
-                   <span class="like-counter">{{$post->likes_count}}</span>
-                   </span>
-               @endif
-               @endauth
             @endforeach
         </div>
         <script>

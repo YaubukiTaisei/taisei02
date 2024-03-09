@@ -15,24 +15,23 @@ class PostController extends Controller
         return view('posts/list')->with(['posts' => $post->getByLimit()]);
     } 
     
+     public function index(Post $post)
+    {
+        return view('posts/index')->with(['posts' => $post->getByLimit()]);
+    }
+    
     public function show(Post $post)
     {
+        $user = auth()->user();
+        $post->user = $user;
+        $post->loadCount('likes');
+        //$posts = Post::withCount('likes')->orderByDesc('updated_at')->get();
         return view('posts/show')->with(['post' => $post]);
     }
     
     public function create()
     {
         return view('posts/create');
-    }
-    
-    public function index(Post $post)
-    {
-        return view('posts/index')->with(['posts' => $post->getByLimit()]);
-        $user = auth()->user();
-        $posts = Post::withCount('likes')->orderByDesc('updated_at')->get();
-        return view('posts.index', [
-            'posts' => $posts,
-        ]);
     }
     
     public function store(Request $request, Post $post)
