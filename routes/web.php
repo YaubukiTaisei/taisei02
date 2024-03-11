@@ -19,12 +19,14 @@ Route::middleware('auth')->group(function () {
     Route::get('/', [PostController::class, 'list']);
     Route::get('posts/create',[PostController::class, 'create']);
     Route::get('posts/index',[PostController::class, 'index'])->name('index');
+    Route::get('/posts/search',[PostController::class, 'search']);
     Route::get('/posts/{post}', [PostController::class, 'show']);
     Route::post('/posts', [PostController::class, 'store']);
     Route::get('/posts/edit/{post}', [PostController::class, 'edit']);
     Route::put('posts/{post}', [Postcontroller::class, 'update']);
     Route::delete('/posts/{post}',[PostController::class, 'delete']);
     Route::post('/posts/like', [PostController::class, 'like'])->name('posts.like');
+    
 });
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

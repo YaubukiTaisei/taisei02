@@ -11,6 +11,11 @@
     <body class="antialiased">
         <h1>体験記を探す</h1>
         <a href="/posts/create">・体験記を投稿する</a>
+        <form action="/posts/search" method="get">
+            @csrf
+            <input type="search" name="keyword" placeholder="企業名を入力">
+            <input type="submit" name="submit" value="検索">
+        </form>
         <div class='posts'>
             @foreach($posts as $post)
                <div class='post'>
