@@ -34,6 +34,27 @@ class PostController extends Controller
         return view('posts/create');
     }
     
+    
+    public function search(Request $request)
+    {
+       $keyword = $request->input('keyword');
+       
+       $query = Post::query();
+       
+       if(!empty($keyword)) 
+       {
+          $query->where('company_name', 'LIKE', "%{$keyword}%");
+       }
+       
+       $posts =$query->get();
+       
+       return view('posts.index')->with 
+          ([
+          'posts' => $posts,
+          'keyword' => $keyword
+          ]);
+    }
+    
     public function store(Request $request, Post $post)
     {
         $input = $request['post'];
