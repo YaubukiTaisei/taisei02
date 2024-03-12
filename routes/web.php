@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
-
+use App\Http\Controllers\CommentController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,6 +21,8 @@ Route::middleware('auth')->group(function () {
     Route::get('posts/index',[PostController::class, 'index'])->name('index');
     Route::get('/posts/search',[PostController::class, 'search']);
     Route::get('/posts/{post}', [PostController::class, 'show']);
+    Route::get('/posts/comment',[PostControoler::class, 'comment']);
+    Route::post('/posts/comment/{post}', [CommentController::class, 'store']);
     Route::post('/posts', [PostController::class, 'store']);
     Route::get('/posts/edit/{post}', [PostController::class, 'edit']);
     Route::put('posts/{post}', [Postcontroller::class, 'update']);

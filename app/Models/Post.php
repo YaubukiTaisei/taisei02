@@ -50,4 +50,14 @@ class Post extends Model
     public function isLikedBy($user): bool {
         return Like::where('user_id', $user->id)->where('post_id', $this->id)->first() !==null;
     }
+    
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+    
+    public function user()
+    {
+        return $this->belongTo(User::class);
+    }
 }
