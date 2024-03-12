@@ -55,6 +55,17 @@ class PostController extends Controller
           ]);
     }
     
+    public function comment(Request $request)
+    {
+        $comments = Comment::with(['user', 'replies', 'replies.user'])
+            ->where('comments.post_id', $post_id)
+            ->get();
+        
+        return view('posts.show', [
+            'comments' => $comments,
+        ]);
+    }
+    
     public function store(Request $request, Post $post)
     {
         $input = $request['post'];

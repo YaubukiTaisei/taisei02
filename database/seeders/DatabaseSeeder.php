@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ResultSeeder::class);
         $this->call(Selection_typeSeeder::class);
         $this->call(PostSeeder::class);
+       
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',

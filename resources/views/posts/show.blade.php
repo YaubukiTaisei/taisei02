@@ -51,6 +51,22 @@
         <div class='footer'>
             <a href="/posts/index">戻る</a>
         </div>
+        <div class='card mb-4'>
+            <form method='POST' action='/posts/comment/{{ $post->id }}'>
+                @csrf
+                <input type='hidden' action= post_id value='{{ $post->id }}'>
+                <div class='form-group'>
+                    <textarea name='body' class='form-control' id='body' placeholder='コメントを入力する'>{{old('body')}}</textarea>
+                </div>
+                <div class='form-group mt-4'>
+                    <button class='btn btn-success float-right mb-3 mr-3'>コメントする</button>
+                </div>
+            </form>
+                @foreach($post->comments as $comment)
+                    <p class='user'>{{ $comment->user->name }}</p>
+                    <p class='body'>{{ $comment->body }}</p>
+                @endforeach
+        </div>
         <script>
             $(function () {
     let like = $('.like-toggle'); //like-toggleのついたiタグを取得し代入。
