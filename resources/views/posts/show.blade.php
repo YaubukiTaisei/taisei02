@@ -65,7 +65,13 @@
                 @foreach($post->comments as $comment)
                     <p class='user'>{{ $comment->user->name }}</p>
                     <p class='body'>{{ $comment->body }}</p>
+                    <form method="post" action="/posts/comment/{{ $comment->id }}">
+                        @csrf
+                        @method('delete')
+                    <button type="submit" class="btn-danger" on Click="confirm('本当に削除しますか？');">削除</button>
+                    </form>
                 @endforeach
+            
         </div>
         <script>
             $(function () {

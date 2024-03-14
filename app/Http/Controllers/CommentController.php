@@ -15,7 +15,12 @@ class CommentController extends Controller
             'user_id' => auth()->user()->id,
             'post_id' => $post->id
             ]);
-            
             return back();
+    }
+    
+    public function delete(Comment $comment)
+    {
+        $comment->delete();
+        return back();
     }
 }
