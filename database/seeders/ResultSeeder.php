@@ -17,15 +17,15 @@ class ResultSeeder extends Seeder
     public function run()
     {
         DB::table('results')->insert([
-           'process' => '一次選考通過',  
+           'process' => '一次選考通過者',  
         ]);
          
         DB::table('results')->insert([
-           'process' => '二次選考通過',
+           'process' => '二次選考通過者',
         ]);
         
         DB::table('results')->insert([
-           'process' => '三次選考通過', 
+           'process' => '三次選考通過者', 
         ]);
            
         DB::table('results')->insert([
@@ -33,11 +33,11 @@ class ResultSeeder extends Seeder
         ]);
         
         DB::table('results')->insert([
-           'process' => '内定', 
+           'process' => '内定者', 
         ]);
         
         DB::table('results')->insert([
-           'process' => '内定辞退', 
+           'process' => '内定辞退者', 
         ]);
     }
 }
