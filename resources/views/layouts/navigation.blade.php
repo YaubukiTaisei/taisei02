@@ -8,7 +8,10 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('index')" :active="request()->routeIs('index')">
-                        {{ __('一覧') }}
+                        {{ __('体験記一覧') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('create')" :active="request()->routeIs('create')">
+                        {{ __('体験記の投稿') }}
                     </x-nav-link>
                 </div>
             </div>
@@ -63,8 +66,11 @@
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('index')" :active="request()->routeIs('index')">
-                {{ __('一覧') }}
+                {{ __('体験記を探す') }}
             </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('create')" :active="request()->routeIs('create')">
+                {{ __('体験記を投稿する') }}
+            </x-responsive-nav-link> 
         </div>
 
         <!-- Responsive Settings Options -->

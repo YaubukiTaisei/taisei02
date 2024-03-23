@@ -12,68 +12,88 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
         
     </head>
+    <h1 class="p-4 mb-4 text-blue-900 font-bold bg-blue-100">就活easy</h1>
+    <x-app-layout>
     <body class="antialiased">
-        <h1 class='企業名'>
+        <h1 class='企業名  mb-6'>
             {{ $post->company_name }}
         </h1>
         <div class='content'>
-            <div class='content_post'>
-            　 <p>職種</p>
-                   <p class='occupation'>{{ $post->occupation }}</p>
-               <p>企業の評価</p>  
-                   <p class='evaluation_id'>{{ $post->evaluation_id }}</p>
-               <p>選考タイプ</p>
-                   <p class='selection_type_id'>{{ $post->selection_type->type }}</p>
-               <p>最終選考結果</p>  
-                   <p class='result_id'>{{ $post->result->process }}</p>
-               <P>Q.</P>   
-                   <p class='question'>{{ $post->question }}</p>
-               <P>A.</P>
-                   <p class='answer'>{{ $post->answer }}</p>
+            <div class='content_post ml-10'>
+            <div class="flex justify-left items-center gap-4 mb-6">
+                <p>職種</p>
+                <p class='occupation'>{{ $post->occupation }}</p>
             </div>
-            @auth
-            <!-- Post.phpに作ったisLikedByメソッドをここで使用 -->
-            @if (!$post->isLikedBy(Auth::user()))
-                <span class="likes">
-                    <i class="fas fa-heart like-toggle" data-post-id="{{ $post->id }}"></i>
-                <span class="like-counter">{{$post->likes_count}}</span>
-                </span><!-- /.likes -->
-            @else
-                <span class="likes">
-                    <i class="fas fa-heart heart like-toggle liked" data-post-id="{{ $post->id }}"></i>
-                <span class="like-counter">{{$post->likes_count}}</span>
-                </span><!-- /.likes -->
-            @endif
-            @endauth
-            <div class='edit'>
-               <a href="/posts/edit/{{ $post->id }}">編集</a>
+            <div class="flex justify-left items-center gap-4  mb-6">
+                <p>企業の評価</p>  
+                <p class='evaluation_id'>{{ $post->evaluation_id }}</p>
             </div>
-        <div class='footer'>
-            <a href="/posts/index">戻る</a>
+            <div class="flex justify-left items-center gap-4  mb-6">
+                <p>選考タイプ</p>
+                <p class='selection_type_id'>{{ $post->selection_type->type }}</p>
+            </div>
+            <div class="flex justify-left items-center gap-4  mb-6">
+                <p>最終選考結果</p>  
+                <p class='result_id'>{{ $post->result->process }}</p>
+            </div>
+            <div class="flex justify-left items-center gap-4  mb-6">
+                <P>Q.</P>   
+                <p class='question'>{{ $post->question }}</p>
+            </div>
+            <div class="flex justify-left items-center gap-4  mb-6">
+                <P>A.</P>
+                <p class='answer'>{{ $post->answer }}</p>
+            </div>
         </div>
-        <div class='card mb-4'>
-            <form method='POST' action='/posts/comment/{{ $post->id }}'>
-                @csrf
-                <input type='hidden' action= post_id value='{{ $post->id }}'>
-                <div class='form-group'>
-                    <textarea name='body' class='form-control' id='body' placeholder='コメントを入力する'>{{old('body')}}</textarea>
-                </div>
-                <div class='form-group mt-4'>
-                    <button class='btn btn-success float-right mb-3 mr-3'>コメントする</button>
-                </div>
-            </form>
-                @foreach($post->comments as $comment)
-                    <p class='user'>{{ $comment->user->name }}</p>
-                    <p class='body'>{{ $comment->body }}</p>
-                    <form method="post" action="/posts/comment/{{ $comment->id }}">
-                        @csrf
-                        @method('delete')
-                    <button type="submit" class="btn-danger" on Click="confirm('本当に削除しますか？');">削除</button>
-                    </form>
-                @endforeach
-            
+    <div class='mb-6 ml-10'>
+    @auth
+    <!-- Post.phpに作ったisLikedByメソッドをここで使用 -->
+    @if (!$post->isLikedBy(Auth::user()))
+        <span class="likes">
+            <i class="fas fa-heart like-toggle" data-post-id="{{ $post->id }}"></i>
+        <span class="like-counter">{{$post->likes_count}}</span>
+        </span><!-- /.likes -->
+    @else
+        <span class="likes">
+            <i class="fas fa-heart heart like-toggle liked " data-post-id="{{ $post->id }}"></i>
+        <span class="like-counter">{{$post->likes_count}}</span>
+        </span><!-- /.likes -->
+    @endif
+    @endauth
+    </div>
+    <div class='flex justify-left items-center gap-4  mb-20 ml-10'>
+    <div class='edit'>
+        <a href="/posts/edit/{{ $post->id }}">編集</a>
+    </div>
+    <div class='footer'>
+        <a href="/posts/index">戻る</a>
+    </div>
+    </div>
+     @foreach($post->comments as $comment)
+        <div class='flex justify-left items-center gap-4'>
+            <p class='user'>{{ $comment->user->name }}</p>
+            <p class='body'>{{ $comment->body }}</p>
         </div>
-        <script>
+        <form method="post" action="/posts/comment/{{ $comment->id }}">
+            @csrf
+            @method('delete')
+        <button type="submit" class="btn-danger" on Click="confirm('本当に削除しますか？');">削除</button>
+        </form>
+    @endforeach
+    <div>
+        <form method='POST' action='/posts/comment/{{ $post->id }}'>
+        @csrf
+        <input type='hidden' action= post_id value='{{ $post->id }}'>
+        <div class='form-group ml-5'>
+            <textarea name='body' class='form-control' id='body' placeholder='コメントを入力する'>{{old('body')}}</textarea>
+        </div>  
+        <div class='form-group mt-4 mb-40'>
+            <button class='btn btn-success float-left ml-5'>コメントする</button>
+        </div>
+        </form>
+    </div>
+        </div>
+    <script>
             $(function () {
     let like = $('.like-toggle'); //like-toggleのついたiタグを取得し代入。
     let likePostId; //変数を宣言
@@ -104,6 +124,7 @@
       });
     });
 });
-        </script>
-    </body>
+    </script>
+</body>
+</x-app-layout>
 </html>

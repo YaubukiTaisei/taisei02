@@ -16,9 +16,9 @@ use App\Http\Controllers\CommentController;
 */
 Route::get('/', [PostController::class, 'top'])->name('dashboard');
 Route::middleware('auth')->group(function () {
-    Route::get('/', [PostController::class, 'list']);
-    Route::get('posts/create',[PostController::class, 'create']);
+    Route::get('/', [PostController::class, 'list']); 
     Route::get('posts/index',[PostController::class, 'index'])->name('index');
+    Route::get('posts/create',[PostController::class, 'create'])->name('create');
     Route::get('/posts/search',[PostController::class, 'search']);
     Route::get('/posts/{post}', [PostController::class, 'show']);
     Route::get('/posts/comment',[PostControoler::class, 'comment']);
